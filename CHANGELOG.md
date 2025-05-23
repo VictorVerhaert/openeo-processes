@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased / Draft
 
+### Added
+
+- Implementation guide for implementing OGC API - Processes in openEO
+- `export_collection`
+- `export_workspace`
+- `run_ogcapi`
+- `run_ogcapi_externally`
+- `stac_modify`
+
 ### Changed
 
 - Clarified for various mathematical functions the defined input and output ranges.
@@ -15,21 +24,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added a [section about character encodings to the implementation guide](meta/implementation.md#character-encoding).
   Removed any character encoding related wording from the process specifications itself.
 - Added a uniqueness contraint to various array-typed parameters (e.g. lists of dimension names or labels)
+- Renamed `create_data_cube` to `create_cube`. [#68](https://github.com/Open-EO/openeo-processes/issues/68)
 - `array_interpolate_linear`: Apply interpolation to NaN and no-data values.
 - `clip`: Throw an exception if min > max. [#472](https://github.com/Open-EO/openeo-processes/issues/472)
+- `save_results`: Returns the STAC resource instead of boolean `true` [API#376](https://github.com/Open-EO/openeo-api/issues/376)
+- `apply_polygon`: Renamed `polygons` parameter to `geometries` for better alignment with other geometry handling processes. [#511](https://github.com/Open-EO/openeo-processes/issues/511)
 
 ### Fixed
 
 - `aggregate_temporal` and `aggregate_temporal_period`: Clarified that the process throws a `DimensionNotAvailable` exception when no temporal dimension exists.
 - `aggregate_temporal_period`: Removed unused exception `DistinctDimensionLabelsRequired`.
 - `aggregate_temporal_period`: Clarified that the definition of weeks follows ISO 8601.
-- `divide`: Clarified behavior for division by 0.
+- `apply_polygon`: Replaced outdated usage of `raster-cube` subtype with `datacube` and dimensions. [#524](https://github.com/Open-EO/openeo-processes/issues/524)
 - `between`: Clarify that `null` is passed through.
+- `cummax`, `cummin`, `cumproduct`, `cumsum`: Clarified the descriptions around the `ignore_nodata` parameter.
+- `divide`: Clarified behavior for division by 0.
 - `eq` and `neq`: Explicitly set the minimum value for the `delta` parameter.
 - `filter_bbox`, `load_collection`, `load_stac`: Clarified that the bounding box is reprojected to the CRS of the spatial data cube dimensions if required.
 - `filter_spatial`: Clarified that masking is applied using the given geometries. [#469](https://github.com/Open-EO/openeo-processes/issues/469)
 - `mod`: Clarified behavior for y = 0.
 - `sqrt`: Clarified that NaN is returned for negative numbers.
+- Clarified for various mathematical functions the defined input and output ranges. Mention that `NaN` is returned outside of the defined input range where possible.
 
 ## [2.0.0-rc.1] - 2023-05-25
 
